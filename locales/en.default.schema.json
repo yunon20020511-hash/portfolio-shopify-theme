@@ -1,5 +1,93 @@
 {
   "settings_schema": {
+    "custom_headings": {
+      "name": "Headings (easy settings)",
+      "settings": {
+        "paragraph": {
+          "content": "Change heading font, weight, size and color here without editing code. Changes appear in the preview right away."
+        },
+        "heading_font_jp": {
+          "label": "Japanese heading font",
+          "info": "Loaded from Google Fonts only when selected. \"Use theme font\" follows Typography > Headings.",
+          "options__none": {
+            "label": "Use theme font"
+          }
+        },
+        "heading_weight": {
+          "label": "Heading weight",
+          "options__theme": {
+            "label": "Theme default"
+          },
+          "options__400": {
+            "label": "Regular"
+          },
+          "options__500": {
+            "label": "Medium"
+          },
+          "options__700": {
+            "label": "Bold"
+          }
+        },
+        "heading_scale_mobile": {
+          "label": "Heading size on mobile",
+          "info": "Relative to the heading size set in Typography."
+        },
+        "heading_letter_spacing": {
+          "label": "Letter spacing",
+          "info": "In 1/100 em."
+        },
+        "heading_color": {
+          "label": "Heading color",
+          "info": "Applies to sections using color scheme 1. Leave empty to follow the color scheme."
+        }
+      }
+    },
+    "gift_wrap": {
+      "name": "Gift wrapping",
+      "settings": {
+        "paragraph": {
+          "content": "Create a product for the wrapping fee (e.g. \"Gift wrapping fee\", 330 yen) and select it below. Then add the \"Gift options\" block to the product page."
+        },
+        "gift_wrap_product": {
+          "label": "Wrapping fee product",
+          "info": "Added to the cart together with the item. Its quantity follows the item and it is removed with the item."
+        }
+      }
+    },
+    "free_shipping": {
+      "name": "Free shipping bar",
+      "settings": {
+        "free_shipping_enable": {
+          "label": "Show free shipping bar in cart"
+        },
+        "free_shipping_threshold": {
+          "label": "Free shipping threshold (store currency)",
+          "info": "Match the free shipping rate in Settings > Shipping and delivery."
+        },
+        "free_shipping_thresholds_other": {
+          "label": "Thresholds for other currencies",
+          "info": "Currency code and amount, separated by commas. Example: USD:35, EUR:30. The bar is hidden for currencies not listed."
+        }
+      }
+    },
+    "localization_position": {
+      "name": "Language and currency selector",
+      "settings": {
+        "localization_position": {
+          "label": "Show selectors in",
+          "info": "Which selectors to show (country/currency, language) is set in the Header and Footer sections.",
+          "options__header": {
+            "label": "Header (top right)"
+          },
+          "options__footer": {
+            "label": "Footer"
+          },
+          "options__both": {
+            "label": "Header and footer"
+          }
+        }
+      }
+    },
     "global": {
       "settings": {
         "header__border": {
@@ -375,6 +463,94 @@
     }
   },
   "sections": {
+    "gift-feature": {
+      "name": "Feature page (LP)",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_size": {
+          "label": "Heading size"
+        },
+        "subheading": {
+          "label": "Small text above heading"
+        },
+        "text": {
+          "label": "Text"
+        },
+        "button_label": {
+          "label": "Button label"
+        },
+        "button_link": {
+          "label": "Button link"
+        }
+      },
+      "blocks": {
+        "hero": {
+          "name": "Main visual",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "eyebrow": {
+              "label": "Small text above heading"
+            },
+            "text_alignment": {
+              "label": "Text alignment",
+              "options__left": {
+                "label": "Left"
+              },
+              "options__center": {
+                "label": "Center"
+              }
+            },
+            "overlay_opacity": {
+              "label": "Image overlay opacity"
+            },
+            "min_height": {
+              "label": "Minimum height"
+            },
+            "full_width": {
+              "label": "Full width"
+            }
+          }
+        },
+        "products": {
+          "name": "Product pickup",
+          "settings": {
+            "products": {
+              "label": "Products"
+            },
+            "columns_desktop": {
+              "label": "Columns on desktop"
+            }
+          }
+        },
+        "faq": {
+          "name": "FAQ",
+          "settings": {
+            "open_first": {
+              "label": "Open the first question"
+            },
+            "question": {
+              "label": "Question"
+            },
+            "answer": {
+              "label": "Answer"
+            }
+          }
+        },
+        "cta": {
+          "name": "Call to action"
+        },
+        "text": {
+          "name": "Text"
+        }
+      },
+      "presets": {
+        "name": "Feature page (LP)"
+      }
+    },
     "all": {
       "animation": {
         "content": "Animations",
@@ -1053,6 +1229,10 @@
         "enable_language_selector": {
           "label": "Language selector",
           "info": "[Manage languages](/admin/settings/languages)"
+        },
+        "sample_notice": {
+          "label": "Notice text",
+          "info": "Shown under the copyright. Leave empty to hide."
         },
         "payment_enable": {
           "label": "Payment method icons"
@@ -1916,6 +2096,36 @@
     "main-product": {
       "name": "Product information",
       "blocks": {
+        "gift_options": {
+          "name": "Gift options",
+          "settings": {
+            "paragraph": {
+              "content": "Select the wrapping fee product in Theme settings > Gift wrapping. Turn off \"Show dynamic checkout buttons\" on the Buy buttons block, or it is hidden automatically while gift wrapping is selected."
+            },
+            "heading": {
+              "label": "Heading"
+            },
+            "show_noshi": {
+              "label": "Show noshi selector"
+            },
+            "noshi_options": {
+              "label": "Noshi choices",
+              "info": "One choice per line. The first line is selected by default."
+            },
+            "show_card": {
+              "label": "Show message card selector"
+            },
+            "card_options": {
+              "label": "Message card choices"
+            },
+            "show_message": {
+              "label": "Show card message field"
+            },
+            "note": {
+              "label": "Note"
+            }
+          }
+        },
         "text": {
           "name": "Text",
           "settings": {

@@ -1,0 +1,11 @@
+Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant SKU,Variant Grams,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Requires Shipping,Variant Taxable,Image Src,Image Alt Text,Status
+sencha-asatsuyu,煎茶「朝露」100g,<p>静岡・牧之原の一番茶を使った深蒸し煎茶。まろやかな甘みと澄んだ水色が特長です。</p><ul><li>内容量：100g</li><li>原産地：静岡県</li></ul>,結葉堂,日本茶,"日本茶,ギフト",TRUE,Title,Default Title,YH-T001,150,deny,manual,1620,TRUE,TRUE,,,active
+hojicha-akitomoshi,ほうじ茶「秋灯」80g,<p>京都・宇治の茎茶を浅く焙じた、香ばしく軽やかなほうじ茶。食後の一杯に。</p><ul><li>内容量：80g</li><li>原産地：京都府</li></ul>,結葉堂,日本茶,"日本茶,ギフト,秋",TRUE,Title,Default Title,YH-T002,120,deny,manual,1296,TRUE,TRUE,,,active
+matcha-chiyo,抹茶「千代の白」30g缶,<p>濃茶にも使える石臼挽きの抹茶。お菓子作りより、そのまま点てて味わってほしい一品です。</p><ul><li>内容量：30g（缶入り）</li><li>原産地：京都府</li></ul>,結葉堂,日本茶,"日本茶,ギフト",TRUE,Title,Default Title,YH-T003,80,deny,manual,2160,TRUE,TRUE,,,active
+wakocha-yuzuriha,和紅茶「ゆずり葉」ティーバッグ10個,<p>国産の茶葉で作った渋みの少ない紅茶。ミルクにもよく合います。</p><ul><li>内容量：2.5g×10個</li><li>原産地：静岡県</li></ul>,結葉堂,日本茶,"日本茶,ギフト",TRUE,Title,Default Title,YH-T004,60,deny,manual,1080,TRUE,TRUE,,,active
+yuiha-blend,結葉ブレンド（中深煎り）200g,<p>ブラジルとコロンビアをベースにした、毎日飲みたい定番ブレンド。チョコレートのような甘い余韻。</p><ul><li>内容量：200g</li><li>焙煎度：中深煎り</li></ul>,結葉堂,コーヒー豆,"コーヒー,ギフト",TRUE,豆の状態,豆のまま,YH-C001-B,220,deny,manual,1512,TRUE,TRUE,,,active
+yuiha-blend,,,,,,,,中挽き（ドリップ用）,YH-C001-G,220,deny,manual,1512,TRUE,TRUE,,,
+ethiopia-yirgacheffe,エチオピア イルガチェフェ（浅煎り）200g,<p>紅茶やベリーを思わせる華やかな香り。浅煎りのコーヒーが好きな方への贈りものに。</p><ul><li>内容量：200g</li><li>焙煎度：浅煎り</li></ul>,結葉堂,コーヒー豆,"コーヒー,ギフト",TRUE,豆の状態,豆のまま,YH-C002-B,220,deny,manual,1836,TRUE,TRUE,,,active
+ethiopia-yirgacheffe,,,,,,,,中挽き（ドリップ用）,YH-C002-G,220,deny,manual,1836,TRUE,TRUE,,,
+tea-coffee-tasting-set,日本茶とコーヒーの飲み比べギフトセット,<p>煎茶・ほうじ茶・結葉ブレンドを少しずつ詰め合わせました。好みがわからない方への贈りものにおすすめです。</p><ul><li>煎茶 30g／ほうじ茶 30g／結葉ブレンド 100g</li></ul>,結葉堂,ギフトセット,"日本茶,コーヒー,ギフト,秋",TRUE,Title,Default Title,YH-S001,300,deny,manual,4320,TRUE,TRUE,,,active
+gift-wrapping,ギフト包装料,<p>ギフト包装の料金です（商品ページで「ギフト包装する」を選ぶと自動で追加されます）。</p>,結葉堂,包装料,,TRUE,Title,Default Title,YH-WRAP,0,continue,manual,330,FALSE,TRUE,,,active

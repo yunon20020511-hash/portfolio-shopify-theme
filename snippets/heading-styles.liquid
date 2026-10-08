@@ -1,0 +1,71 @@
+{% comment %}
+  [カスタマイズ] 見出しのオーナー設定（テーマ設定「見出し（かんたん設定）」）を CSS に反映する
+
+  - 日本語フォント：Shopify のフォントライブラリには日本語の書体がないため、選んだときだけ Google Fonts を読み込む
+  - 太さ・文字間隔・色・スマートフォンでの大きさ
+  base.css より後に読み込み、h0〜h5 と見出しクラスの指定を上書きする
+
+  Usage:
+  {% render 'heading-styles' %}
+{% endcomment %}
+{%- liquid
+  assign jp_font_family = blank
+  assign jp_font_query = blank
+  case settings.heading_font_jp
+    when 'noto_serif_jp'
+      assign jp_font_family = "'Noto Serif JP', serif"
+      assign jp_font_query = 'Noto+Serif+JP:wght@400;500;700'
+    when 'shippori_mincho'
+      assign jp_font_family = "'Shippori Mincho', serif"
+      assign jp_font_query = 'Shippori+Mincho:wght@400;500;700'
+    when 'zen_old_mincho'
+      assign jp_font_family = "'Zen Old Mincho', serif"
+      assign jp_font_query = 'Zen+Old+Mincho:wght@400;500;700'
+    when 'noto_sans_jp'
+      assign jp_font_family = "'Noto Sans JP', sans-serif"
+      assign jp_font_query = 'Noto+Sans+JP:wght@400;500;700'
+    when 'zen_maru_gothic'
+      assign jp_font_family = "'Zen Maru Gothic', sans-serif"
+      assign jp_font_query = 'Zen+Maru+Gothic:wght@400;500;700'
+  endcase
+-%}
+
+{%- if jp_font_query != blank -%}
+  {% # theme-check-disable RemoteAsset %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family={{ jp_font_query }}&display=swap"
+  >
+  {% # theme-check-enable RemoteAsset %}
+{%- endif -%}
+
+{% style %}
+  :root {
+    {%- if jp_font_family != blank %}
+      --font-heading-family: {{ jp_font_family }};
+      --font-heading-style: normal;
+    {%- endif %}
+    {%- if settings.heading_weight != 'theme' %}
+      --font-heading-weight: {{ settings.heading_weight }};
+    {%- endif %}
+  }
+
+  h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5 {
+    letter-spacing: {{ settings.heading_letter_spacing | divided_by: 100.0 }}em;
+  }
+
+  {%- if settings.heading_color != blank and settings.heading_color.alpha != 0.0 %}
+    /* 色は基本の配色（スキーム1）の上の見出しだけに使う。濃い背景のセクションで読めなくなるのを防ぐ */
+    .color-scheme-1 :is(h1, h2, h3, h4, h5, .h0, .h1, .h2, .h3, .h4, .h5) {
+      color: {{ settings.heading_color }};
+    }
+  {%- endif %}
+
+  @media screen and (max-width: 749px) {
+    :root {
+      --font-heading-scale: calc({{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }} * {{ settings.heading_scale_mobile | divided_by: 100.0 }});
+    }
+  }
+{% endstyle %}

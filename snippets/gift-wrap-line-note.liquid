@@ -1,0 +1,15 @@
+{% comment %}
+  [カスタマイズ] カートの包装料の行に「数量は対象商品と連動」と表示する
+  （数量の入力欄と削除ボタンは assets/custom-theme.css で隠す）
+
+  Accepts:
+  - item: {Object} カートの行
+
+  Usage:
+  {% render 'gift-wrap-line-note', item: item %}
+{% endcomment %}
+{%- if item.properties['_gift_for'] != blank -%}
+  <p class="cart-item__gift-note caption">
+    {{ 'gift_options.cart_linked_quantity' | t: quantity: item.quantity }}
+  </p>
+{%- endif -%}

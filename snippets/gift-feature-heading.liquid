@@ -1,0 +1,19 @@
+{% comment %}
+  [カスタマイズ] 特集ページセクション（sections/gift-feature.liquid）のブロック見出し
+
+  Accepts:
+  - block: {Object} 見出し（heading・heading_size・subheading）を持つブロック
+
+  Usage:
+  {% render 'gift-feature-heading', block: block %}
+{% endcomment %}
+{%- if block.settings.heading != blank or block.settings.subheading != blank -%}
+  <div class="gift-feature__heading">
+    {%- if block.settings.subheading != blank -%}
+      <p class="gift-feature__subheading caption-with-letter-spacing">{{ block.settings.subheading | escape }}</p>
+    {%- endif -%}
+    {%- if block.settings.heading != blank -%}
+      <h2 class="{{ block.settings.heading_size | default: 'h2' }}">{{ block.settings.heading | escape }}</h2>
+    {%- endif -%}
+  </div>
+{%- endif -%}

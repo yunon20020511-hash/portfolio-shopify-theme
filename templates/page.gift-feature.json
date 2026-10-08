@@ -1,0 +1,90 @@
+{
+  "sections": {
+    "main": {
+      "type": "gift-feature",
+      "blocks": {
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "eyebrow": "SEASONAL GIFT 2026 AUTUMN",
+            "heading": "季節のギフト特集 ― 秋の贈りもの",
+            "heading_size": "h1",
+            "text": "<p>新米の季節に合わせた香ばしいほうじ茶、深煎りのブレンド。<br>大切な方へ、実りの秋を届けるギフトを集めました。</p>",
+            "button_label": "特集の商品を見る",
+            "button_link": "#gift-feature-products",
+            "text_alignment": "left",
+            "overlay_opacity": 35,
+            "min_height": 65,
+            "full_width": true,
+            "color_scheme": "scheme-3"
+          }
+        },
+        "products": {
+          "type": "products",
+          "settings": {
+            "subheading": "PICK UP",
+            "heading": "スタッフが選んだ秋のギフト",
+            "heading_size": "h2",
+            "products": [],
+            "columns_desktop": 3
+          }
+        },
+        "message": {
+          "type": "text",
+          "settings": {
+            "subheading": "GIFT WRAPPING",
+            "heading": "包装・のし・メッセージカード",
+            "heading_size": "h2",
+            "text": "<p>商品ページで「ギフト包装する（+330円）」を選ぶと、季節の和紙で一点ずつお包みします。のしの表書きとメッセージカードもお選びいただけます。</p>"
+          }
+        },
+        "faq": {
+          "type": "faq",
+          "settings": {
+            "subheading": "FAQ",
+            "heading": "よくあるご質問",
+            "heading_size": "h2",
+            "open_first": true,
+            "question_1": "ギフト包装の料金はいくらですか？",
+            "answer_1": "<p>商品1点につき330円（税込）です。数量を2点にすると、包装料も2点分になります。</p>",
+            "question_2": "のしの表書きは選べますか？",
+            "answer_2": "<p>御礼・御祝・内祝・御中元・御歳暮・粗品からお選びいただけます。名入れはご注文時の備考欄にご記入ください。</p>",
+            "question_3": "金額のわかるものは同封されますか？",
+            "answer_3": "<p>ギフト包装をお選びいただいたご注文には、金額の入った納品書を同封しません。</p>",
+            "question_4": "送料はいくらですか？",
+            "answer_4": "<p>全国一律600円、5,000円以上のご注文で送料無料です。カートに「あと○円で送料無料」と表示されます。</p>",
+            "question_5": "",
+            "answer_5": ""
+          }
+        },
+        "cta": {
+          "type": "cta",
+          "settings": {
+            "subheading": "ALL ITEMS",
+            "heading": "贈りたい人を思い浮かべて",
+            "heading_size": "h2",
+            "text": "<p>日本茶・コーヒー豆・飲み比べセットなど、すべての商品をギフト対応でお届けします。</p>",
+            "button_label": "すべての商品を見る",
+            "button_link": "shopify://collections/shop",
+            "color_scheme": "scheme-2"
+          }
+        }
+      },
+      "block_order": [
+        "hero",
+        "products",
+        "message",
+        "faq",
+        "cta"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

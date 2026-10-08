@@ -1,4 +1,22 @@
 {
+  "gift_options": {
+    "wrap_label": "Add gift wrapping (+{{ price }})",
+    "property_wrap": "Gift wrapping",
+    "property_wrap_value": "Yes",
+    "noshi_label": "Noshi (gift paper)",
+    "card_label": "Message card",
+    "message_label": "Card message",
+    "message_limit": "Up to {{ count }} characters",
+    "target_product": "For",
+    "cart_linked_quantity": "Quantity follows the wrapped item ({{ quantity }})",
+    "unavailable": "Gift wrapping is currently unavailable.",
+    "editor_no_wrap_product": "Select the wrapping fee product in Theme settings > Gift wrapping to show this option."
+  },
+  "free_shipping": {
+    "remaining_html": "Add <strong>{{ amount }}</strong> more for free shipping",
+    "achieved": "Your order qualifies for free shipping!",
+    "progress_label": "Progress toward free shipping"
+  },
   "general": {
     "password_page": {
       "login_form_heading": "Enter store using password:",

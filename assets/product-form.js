@@ -42,6 +42,13 @@ if (!customElements.get('product-form')) {
         }
         config.body = formData;
 
+        // [カスタマイズ] ギフト包装ありのときは、本体と包装料をまとめて追加する（assets/gift-options.js）
+        const giftRequest = window.GiftWrap?.buildAddRequest(this.form, formData);
+        if (giftRequest) {
+          config.headers['Content-Type'] = 'application/json';
+          config.body = giftRequest.body;
+        }
+
         const variantId = formData.get('id');
         const quantity = parseInt(formData.get('quantity')) || 1;
         const linesUpdateDeferred = this.createCartLinesUpdateEvent(variantId, quantity);
@@ -49,6 +56,7 @@ if (!customElements.get('product-form')) {
         fetch(`${routes.cart_add_url}`, config)
           .then((response) => response.json())
           .then((response) => {
+            if (giftRequest) response = window.GiftWrap.normalizeAddResponse(response);
             if (response.status) {
               publish(PUB_SUB_EVENTS.cartError, {
                 source: 'product-form',

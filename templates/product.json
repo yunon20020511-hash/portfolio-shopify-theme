@@ -39,7 +39,19 @@
         "share": {
           "type": "share",
           "settings": {
-            "share_label": "Share"
+            "share_label": "シェアする"
+          }
+        },
+        "gift_options": {
+          "type": "gift_options",
+          "settings": {
+            "heading": "ギフトオプション",
+            "show_noshi": true,
+            "noshi_options": "なし\n御礼\n御祝\n内祝\n御中元\n御歳暮\n粗品",
+            "show_card": true,
+            "card_options": "なし\nありがとう\nおめでとう\nお誕生日おめでとう\nThank you\nHappy Birthday",
+            "show_message": true,
+            "note": "包装・のし・カードはご注文の商品1点ごとにお付けします。"
           }
         }
       },
@@ -49,6 +61,7 @@
         "price",
         "variant_picker",
         "quantity_selector",
+        "gift_options",
         "buy_buttons",
         "description",
         "share"
@@ -79,7 +92,7 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "こちらもおすすめ",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,

@@ -1,0 +1,12 @@
+# push のたびに Shopify Theme Check を実行し、Liquid やテーマの構成に問題がないか確認する
+name: Theme Check
+on: [push, pull_request]
+jobs:
+  theme-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Theme Check
+        uses: shopify/theme-check-action@v2
+        with:
+          token: ${{ github.token }}

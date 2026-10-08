@@ -1,0 +1,47 @@
+{% comment %}
+  [カスタマイズ] ギフト包装料の整合チェック
+
+  カート内の包装料（_gift_for 付きの行、またはテーマ設定の包装料商品）について、
+  - 対応する本体（同じ値の _gift_id を持つ行）がなければ 0 個に
+  - 本体と数量がずれていれば本体と同じ数量に
+  するための { 行のキー: 数量 } を JSON で出力する。ずれがなければ何も出力しない。
+  assets/gift-options.js がこれを読み取り、/cart/update.js で修正する。
+
+  Usage:
+  {% render 'gift-wrap-sync' %}
+{% endcomment %}
+{%- liquid
+  assign wrap_product = settings.gift_wrap_product
+  assign sync_entries = ''
+
+  for item in cart.items
+    assign gift_for = item.properties['_gift_for']
+    assign is_wrap = false
+    if gift_for != blank
+      assign is_wrap = true
+    elsif wrap_product != blank and item.product_id == wrap_product.id
+      assign is_wrap = true
+    endif
+
+    if is_wrap
+      assign main_quantity = 0
+      if gift_for != blank
+        for main_item in cart.items
+          if main_item.properties['_gift_id'] == gift_for
+            assign main_quantity = main_quantity | plus: main_item.quantity
+          endif
+        endfor
+      endif
+
+      if main_quantity != item.quantity
+        assign entry = item.key | json | append: ':' | append: main_quantity
+        assign sync_entries = sync_entries | append: ',' | append: entry
+      endif
+    endif
+  endfor
+-%}
+{%- if sync_entries != '' -%}
+  <script type="application/json" data-gift-wrap-sync>
+    {{- '{' | append: sync_entries | remove_first: ',' | append: '}' -}}
+  </script>
+{%- endif -%}

@@ -9,7 +9,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "新茶・季節の焙煎のお知らせを受け取る",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,
@@ -18,7 +18,8 @@
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "sample_notice": "※架空のショップを題材にした自主制作サンプルです。商品の購入・発送はできません。"
       }
     }
   },

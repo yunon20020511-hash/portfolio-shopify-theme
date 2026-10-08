@@ -7,35 +7,35 @@
       "color_schemes": {
         "scheme-1": {
           "settings": {
-            "background": "#FFFFFF",
+            "background": "#FBF8F2",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
+            "text": "#2B2A26",
+            "button": "#3E5641",
             "button_label": "#FFFFFF",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "secondary_button_label": "#3E5641",
+            "shadow": "#2B2A26"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#F3F3F3",
+            "background": "#EFE9DD",
             "background_gradient": "",
-            "text": "#121212",
-            "button": "#121212",
-            "button_label": "#F3F3F3",
-            "secondary_button_label": "#121212",
-            "shadow": "#121212"
+            "text": "#2B2A26",
+            "button": "#3E5641",
+            "button_label": "#FFFFFF",
+            "secondary_button_label": "#3E5641",
+            "shadow": "#2B2A26"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#242833",
+            "background": "#2F3E33",
             "background_gradient": "",
             "text": "#FFFFFF",
-            "button": "#FFFFFF",
-            "button_label": "#000000",
+            "button": "#E9DFC9",
+            "button_label": "#2F3E33",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#121212"
+            "shadow": "#2B2A26"
           }
         },
         "scheme-4": {
@@ -172,7 +172,7 @@
       "predictive_search_show_vendor": false,
       "predictive_search_show_price": false,
       "currency_code_enabled": true,
-      "cart_type": "notification",
+      "cart_type": "drawer",
       "show_vendor": false,
       "show_cart_note": false,
       "cart_drawer_collection": "",
@@ -190,7 +190,16 @@
             "color_scheme": "scheme-1"
           }
         }
-      }
+      },
+      "heading_font_jp": "shippori_mincho",
+      "heading_weight": "500",
+      "heading_scale_mobile": 85,
+      "heading_letter_spacing": 8,
+      "localization_position": "header",
+      "gift_wrap_product": "gift-wrapping",
+      "free_shipping_enable": true,
+      "free_shipping_threshold": 5000,
+      "free_shipping_thresholds_other": "USD:35"
     }
   }
 }

@@ -491,6 +491,12 @@
                     block: block,
                     product_form_id: product_form_id
                   %}
+                {%- when 'gift_options' -%}
+                  {%- render 'gift-options',
+                    block: block,
+                    product: product,
+                    product_form_id: product_form_id
+                  -%}
                 {%- when 'buy_buttons' -%}
                   {%- render 'buy-buttons',
                     block: block,
@@ -940,6 +946,60 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        }
+      ]
+    },
+    {
+      "type": "gift_options",
+      "name": "t:sections.main-product.blocks.gift_options.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.gift_options.settings.paragraph.content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.main-product.blocks.gift_options.settings.heading.label",
+          "default": "Gift options"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_noshi",
+          "label": "t:sections.main-product.blocks.gift_options.settings.show_noshi.label",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "noshi_options",
+          "label": "t:sections.main-product.blocks.gift_options.settings.noshi_options.label",
+          "info": "t:sections.main-product.blocks.gift_options.settings.noshi_options.info",
+          "default": "None\nCongratulations\nThank you"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_card",
+          "label": "t:sections.main-product.blocks.gift_options.settings.show_card.label",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "card_options",
+          "label": "t:sections.main-product.blocks.gift_options.settings.card_options.label",
+          "info": "t:sections.main-product.blocks.gift_options.settings.noshi_options.info",
+          "default": "None\nThank you\nHappy Birthday"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_message",
+          "label": "t:sections.main-product.blocks.gift_options.settings.show_message.label",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "t:sections.main-product.blocks.gift_options.settings.note.label"
         }
       ]
     },

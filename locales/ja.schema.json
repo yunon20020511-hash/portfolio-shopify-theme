@@ -1,5 +1,93 @@
 {
   "settings_schema": {
+    "custom_headings": {
+      "name": "見出し（かんたん設定）",
+      "settings": {
+        "paragraph": {
+          "content": "見出しのフォント・太さ・大きさ・色を、コードを触らずにここで変えられます。変更はプレビューにすぐ反映されます。"
+        },
+        "heading_font_jp": {
+          "label": "見出しの日本語フォント",
+          "info": "選んだときだけ Google Fonts から読み込みます。「テーマのフォントを使う」は「タイポグラフィ > 見出し」の設定に従います。",
+          "options__none": {
+            "label": "テーマのフォントを使う"
+          }
+        },
+        "heading_weight": {
+          "label": "見出しの太さ",
+          "options__theme": {
+            "label": "テーマの標準"
+          },
+          "options__400": {
+            "label": "標準"
+          },
+          "options__500": {
+            "label": "やや太い"
+          },
+          "options__700": {
+            "label": "太い"
+          }
+        },
+        "heading_scale_mobile": {
+          "label": "スマートフォンでの見出しの大きさ",
+          "info": "「タイポグラフィ」で設定した見出しの大きさに対する割合です。"
+        },
+        "heading_letter_spacing": {
+          "label": "文字の間隔",
+          "info": "1文字の幅の 1/100 単位です。"
+        },
+        "heading_color": {
+          "label": "見出しの色",
+          "info": "配色「スキーム1」のセクションの見出しに使います。空欄にすると配色に従います。"
+        }
+      }
+    },
+    "gift_wrap": {
+      "name": "ギフト包装",
+      "settings": {
+        "paragraph": {
+          "content": "包装料の商品（例：「ギフト包装料」330円）を作成して、下で選んでください。そのうえで、商品ページに「ギフトオプション」ブロックを追加します。"
+        },
+        "gift_wrap_product": {
+          "label": "包装料の商品",
+          "info": "商品と一緒にカートへ追加されます。数量は商品と連動し、商品を削除すると一緒に削除されます。"
+        }
+      }
+    },
+    "free_shipping": {
+      "name": "送料無料バー",
+      "settings": {
+        "free_shipping_enable": {
+          "label": "カートに送料無料バーを表示する"
+        },
+        "free_shipping_threshold": {
+          "label": "送料無料になる金額（ストアの通貨・円）",
+          "info": "「設定 > 配送と配達」の送料無料の条件と同じ金額にしてください。"
+        },
+        "free_shipping_thresholds_other": {
+          "label": "ほかの通貨での金額",
+          "info": "通貨コードと金額をカンマで区切って書きます。例：USD:35, EUR:30。書いていない通貨ではバーを表示しません。"
+        }
+      }
+    },
+    "localization_position": {
+      "name": "言語・通貨の切り替え",
+      "settings": {
+        "localization_position": {
+          "label": "切り替えを表示する場所",
+          "info": "どの切り替え（国・通貨、言語）を出すかは、ヘッダーとフッターのセクションで設定します。",
+          "options__header": {
+            "label": "ヘッダー（右上）"
+          },
+          "options__footer": {
+            "label": "フッター"
+          },
+          "options__both": {
+            "label": "ヘッダーとフッターの両方"
+          }
+        }
+      }
+    },
     "colors": {
       "name": "色",
       "settings": {
@@ -375,6 +463,94 @@
     }
   },
   "sections": {
+    "gift-feature": {
+      "name": "特集ページ（LP）",
+      "settings": {
+        "heading": {
+          "label": "見出し"
+        },
+        "heading_size": {
+          "label": "見出しの大きさ"
+        },
+        "subheading": {
+          "label": "見出しの上の小さな文字"
+        },
+        "text": {
+          "label": "本文"
+        },
+        "button_label": {
+          "label": "ボタンの文字"
+        },
+        "button_link": {
+          "label": "ボタンのリンク先"
+        }
+      },
+      "blocks": {
+        "hero": {
+          "name": "メインビジュアル",
+          "settings": {
+            "image": {
+              "label": "画像"
+            },
+            "eyebrow": {
+              "label": "見出しの上の小さな文字"
+            },
+            "text_alignment": {
+              "label": "文字の配置",
+              "options__left": {
+                "label": "左"
+              },
+              "options__center": {
+                "label": "中央"
+              }
+            },
+            "overlay_opacity": {
+              "label": "画像に重ねる暗さ"
+            },
+            "min_height": {
+              "label": "最低の高さ"
+            },
+            "full_width": {
+              "label": "画面の端まで広げる"
+            }
+          }
+        },
+        "products": {
+          "name": "商品ピックアップ",
+          "settings": {
+            "products": {
+              "label": "商品"
+            },
+            "columns_desktop": {
+              "label": "PC での列数"
+            }
+          }
+        },
+        "faq": {
+          "name": "よくある質問（FAQ）",
+          "settings": {
+            "open_first": {
+              "label": "最初の質問を開いた状態にする"
+            },
+            "question": {
+              "label": "質問"
+            },
+            "answer": {
+              "label": "回答"
+            }
+          }
+        },
+        "cta": {
+          "name": "行動ボタン（CTA）"
+        },
+        "text": {
+          "name": "テキスト"
+        }
+      },
+      "presets": {
+        "name": "特集ページ（LP）"
+      }
+    },
     "all": {
       "padding": {
         "section_padding_heading": "余白",
@@ -898,6 +1074,10 @@
         "enable_language_selector": {
           "label": "言語セレクター",
           "info": "[言語の管理](/admin/settings/languages)"
+        },
+        "sample_notice": {
+          "label": "お知らせの文章",
+          "info": "コピーライトの下に表示します。空欄にすると表示しません。"
         },
         "payment_enable": {
           "label": "決済方法アイコン"
@@ -1612,6 +1792,36 @@
     "main-product": {
       "name": "商品情報",
       "blocks": {
+        "gift_options": {
+          "name": "ギフトオプション",
+          "settings": {
+            "paragraph": {
+              "content": "包装料の商品は「テーマ設定 > ギフト包装」で選びます。「購入ボタン」ブロックの動的チェックアウトボタンは、ギフト包装を選んでいる間は自動で隠れます（常にオフにしてもかまいません）。"
+            },
+            "heading": {
+              "label": "見出し"
+            },
+            "show_noshi": {
+              "label": "のしの選択欄を表示する"
+            },
+            "noshi_options": {
+              "label": "のしの選択肢",
+              "info": "1行に1つずつ書きます。1行目が最初に選ばれた状態になります。"
+            },
+            "show_card": {
+              "label": "メッセージカードの選択欄を表示する"
+            },
+            "card_options": {
+              "label": "メッセージカードの選択肢"
+            },
+            "show_message": {
+              "label": "カードのメッセージ入力欄を表示する"
+            },
+            "note": {
+              "label": "補足の文章"
+            }
+          }
+        },
         "text": {
           "settings": {
             "text": {

@@ -6,24 +6,32 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "heading": "ひと葉、ひと粒に、想いを結ぶ。",
+            "heading_size": "h1"
           }
         },
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
+            "button_label_1": "商品を見る",
+            "button_link_1": "shopify://collections/shop",
             "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_label_2": "季節のギフト特集",
+            "button_link_2": "shopify://pages/gift-feature",
+            "button_style_secondary_2": true
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "日本茶とスペシャルティコーヒーのギフト専門店 結葉堂",
+            "text_style": "subtitle"
           }
         }
       },
       "block_order": [
         "heading",
+        "text",
         "button"
       ],
       "settings": {
@@ -42,12 +50,12 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "人気のギフト",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "shop",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -56,7 +64,7 @@
         "view_all_style": "solid",
         "enable_desktop_slider": false,
         "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
@@ -66,10 +74,64 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "贈る人の気持ちまで、きちんと包んで。",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>静岡と京都の茶園から届く日本茶と、自家焙煎のコーヒー豆。結葉堂は「ちょっといいもの」を贈りたい方のためのギフトショップです。全商品、ギフト包装・のし・メッセージカードをお選びいただけます。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 20
+      }
+    },
+    "notice": {
+      "type": "rich-text",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>※このサイトは架空のショップ「結葉堂」を題材にした自主制作サンプルです。実在の店舗・商品とは関係ありません。</p>"
+          }
+        }
+      },
+      "block_order": [
+        "text"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "intro",
+    "featured_collection",
+    "notice"
   ]
 }

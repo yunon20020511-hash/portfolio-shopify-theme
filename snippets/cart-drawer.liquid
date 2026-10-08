@@ -89,6 +89,7 @@
         >
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
             {%- if cart != empty -%}
+              {%- render 'free-shipping-bar' -%}
               <div class="drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
                   <thead role="rowgroup">
@@ -120,10 +121,15 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
+                      {%- assign gift_link_id = item.properties['_gift_id'] | default: item.properties['_gift_for'] -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
-                        class="cart-item{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}"
+                        class="cart-item{% if item.parent_relationship.parent != null %} cart-item__nested-line{% endif %}{% if item.properties['_gift_for'] != blank %} cart-item--gift-wrap{% endif %}"
                         role="row"
+                        data-line-key="{{ item.key }}"
+                        {% if gift_link_id != blank %}
+                          data-gift-id="{{ gift_link_id | escape }}"
+                        {% endif %}
                         {% if item.parent_relationship.parent != null %}
                           aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
                         {% endif %}
@@ -472,11 +478,13 @@
                               </span>
                             </div>
                           </quantity-popover>
+                          {%- render 'gift-wrap-line-note', item: item -%}
                         </td>
                       </tr>
                     {%- endfor -%}
                   </tbody>
                 </table>
+                {%- render 'gift-wrap-sync' -%}
               </div>
             {%- endif -%}
             <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>

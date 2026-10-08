@@ -55,6 +55,7 @@
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
+            {%- render 'free-shipping-bar' -%}
             <table class="cart-items">
               <caption class="visually-hidden">
                 {{ 'sections.cart.title' | t }}
@@ -82,9 +83,14 @@
 
               <tbody>
                 {%- for item in cart.items -%}
+                  {%- assign gift_link_id = item.properties['_gift_id'] | default: item.properties['_gift_for'] -%}
                   <tr
-                    class="cart-item {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}"
+                    class="cart-item {% if item.parent_relationship.parent != null %}cart-item__nested-line{% endif %}{% if item.properties['_gift_for'] != blank %} cart-item--gift-wrap{% endif %}"
                     id="CartItem-{{ item.index | plus: 1 }}"
+                    data-line-key="{{ item.key }}"
+                    {% if gift_link_id != blank %}
+                      data-gift-id="{{ gift_link_id | escape }}"
+                    {% endif %}
                     {% if item.parent_relationship.parent != null %}
                       aria-label="{{- 'products.product.nested_label' | t: title: item.product.title, parent_title: item.parent_relationship.parent.title | escape -}}"
                     {% endif %}
@@ -413,6 +419,7 @@
                           </span>
                         </div>
                       </quantity-popover>
+                      {%- render 'gift-wrap-line-note', item: item -%}
                     </td>
 
                     <td class="cart-item__totals right small-hide">
@@ -450,6 +457,7 @@
                 {%- endfor -%}
               </tbody>
             </table>
+            {%- render 'gift-wrap-sync' -%}
           {%- endif -%}
         </div>
       </div>

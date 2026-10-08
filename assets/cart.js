@@ -181,14 +181,16 @@ class CartItems extends window.StandardEvents.createViewEventElement(HTMLElement
     // Cache sections before the fetch so we read dataset.id while elements still exist in the DOM
     const sectionsToRender = this.getSectionsToRender();
 
+    // [カスタマイズ] ギフト包装の本体と包装料は、/cart/update.js で同じ数量にまとめて更新する（assets/gift-options.js）
+    const giftUpdates = window.GiftWrap?.linkedUpdates(this, line, quantity);
+
     const body = JSON.stringify({
-      line,
-      quantity,
+      ...(giftUpdates ? { updates: giftUpdates } : { line, quantity }),
       sections: sectionsToRender.map((section) => section.section),
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(giftUpdates ? `${routes.cart_update_url}` : `${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
       .then((response) => {
         return response.text();
       })

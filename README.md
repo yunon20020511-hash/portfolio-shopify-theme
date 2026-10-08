@@ -1,99 +1,126 @@
-# Dawn
+# 結葉堂（ゆいはどう）― Shopify テーマのカスタマイズ
 
-[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)
+架空のお茶とコーヒー豆のギフトショップ「結葉堂」を題材にした、**Shopify テーマ（Dawn）のカスタマイズ**の自主制作サンプルです。
+Shopify の修正・機能追加の案件でよく求められる作業（商品オプションの追加、オーナーが自分で変えられる設定、表示位置の変更、特集ページ、カートの改善）を、**アプリを使わずテーマのコードだけで**実装しました。
 
-[Getting started](#getting-started) |
-[Staying up to date with Dawn changes](#staying-up-to-date-with-dawn-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[Code of conduct](#code-of-conduct) |
-[Theme Store submission](#theme-store-submission) |
-[License](#license)
+> ※架空のショップを題材にした自主制作サンプルです。実在の店舗・商品とは関係ありません。
+> 開発ストアはパスワード付きのため一般公開していません。閲覧をご希望の場合は、応募時にご案内します。
 
-Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
+![トップページ（PC・スマートフォン）](docs/images/top.png)
 
-* **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+## カスタマイズの一覧
 
-You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
+| # | 内容 | 主なファイル | 画面録画 |
+|---|---|---|---|
+| 1 | **ギフトオプション**：ギフト包装（+330円）・のし・メッセージカード。カートページとカートドロワーに表示し、包装料は本体と数量・削除が連動 | `snippets/gift-options.liquid`、`assets/gift-options.js`、`snippets/gift-wrap-sync.liquid` | [gift-options.mp4](docs/images/gift-options.mp4) |
+| 2 | **オーナーが自分で変えられる見出し設定**：日本語フォント・太さ・スマートフォンでの大きさ・文字間隔・色をテーマエディタで変更 | `config/settings_schema.json`、`snippets/heading-styles.liquid` | [headings.mp4](docs/images/headings.mp4) |
+| 3 | **言語・通貨の切り替えの表示位置**：ヘッダー右上／フッター／両方をテーマエディタで選択 | `sections/header.liquid`、`sections/footer.liquid` | [localization.mp4](docs/images/localization.mp4) |
+| 4 | **特集ページ（LP）用セクション**：メインビジュアル・商品ピックアップ・FAQ（アコーディオン）・CTA・テキストをブロックで自由に並べ替え | `sections/gift-feature.liquid`、`templates/page.gift-feature.json` | [feature-page.mp4](docs/images/feature-page.mp4) |
+| 5 | **送料無料までの残り金額バー**：「あと○円で送料無料」。基準額はテーマエディタで設定（通貨ごとにも設定可） | `snippets/free-shipping-bar.liquid` | [free-shipping.mp4](docs/images/free-shipping.mp4) |
 
-## Getting started
-We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+### スクリーンショット
 
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
+| 商品ページ（ギフトオプション） | カートドロワー（包装料の連動・送料無料バー） | 特集ページ |
+|---|---|---|
+| ![商品ページ](docs/images/product.png) | ![カートドロワー](docs/images/cart-drawer.png) | ![特集ページ](docs/images/feature-page.png) |
 
-Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
+## ドキュメント
 
-## Staying up to date with Dawn changes
+- [オーナー向け手順メモ（コードを触らずに変えられる設定）](docs/owner-guide.md)：実際の案件でも納品物として渡す想定の形式
+- [カート・チェックアウトに進めない不具合の調査手順](docs/troubleshooting-cart-checkout.md)：アプリとテーマの切り分け方、開発者ツールで見る箇所、本番テーマを触らない検証と戻し方
+- [ギフトオプションの実装手順](docs/gift-option-implementation.md)：他のストアに同じ機能を入れるときの手順と確認項目
+- [環境の準備と開発ストアの設定](docs/setup.md)
 
-Say you're building a new theme off Dawn but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Dawn repository.
+## 使用技術
 
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
-```sh
-git remote -v
-```
-3. If you don't see an `upstream`, you can add one that points to Shopify's Dawn repository:
-```sh
-git remote add upstream https://github.com/Shopify/dawn.git
-```
-4. Pull in the latest Dawn changes into your repository:
-```sh
-git fetch upstream
-git pull upstream main
-```
+- **Liquid**（セクション・スニペット・schema の設定）
+- **JSON テンプレート**（Online Store 2.0。`templates/*.json`、`sections/*-group.json`）
+- **バニラ JavaScript**（Custom Elements、Cart Ajax API：`/cart/add.js`・`/cart/update.js`・`/cart/change.js`、Section Rendering API）
+- **CSS**（Dawn の CSS 変数と配色スキームに合わせて追加）
+- **Shopify CLI**（`shopify theme dev`／`push`／`check`）
+- ベーステーマ：[Dawn](https://github.com/Shopify/dawn) 16.0.0
+- GitHub Actions で push のたびに Theme Check を実行
 
-## Developer tools
+## 工夫した点
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Dawn is already set up to work with these tools.
+### アプリを使わない実装
 
-### Shopify CLI
+ギフト系のアプリは月額費用がかかるうえ、カートの不具合の原因になりやすいため、テーマのコードだけで実装しました。
 
-[Shopify CLI](https://github.com/Shopify/shopify-cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+- のし・メッセージカードは **line item properties** として本体の行に付け、注文管理画面やメールにもそのまま表示されます
+- 包装料は「ギフト包装料」という別商品にし、本体と**1 回のリクエストで同時に**カートへ入れます（片方だけ入る状態を作らない）
+- Dawn のファイルへの変更は最小限にしました。`product-form.js` と `cart.js` は数行のフックだけで、処理の本体は追加したファイル（`assets/gift-options.js`）にまとめています。Dawn の更新を取り込むときに差分を追いやすくするためです
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+### 包装料の連動
 
-### Theme Check
+「包装料だけがカートに残る」「本体と包装料の数量がずれる」を、次の 3 段階で防いでいます。
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
+1. 本体に `_gift_id`、包装料に同じ値の `_gift_for` を付けて 2 行を紐づける（先頭が `_` のプロパティはお客様に表示されない）
+2. カートで本体の数量変更・削除をすると、`/cart/update.js` で包装料の行も**同じリクエストで**更新する。包装料の行には数量欄と削除ボタンを出さない
+3. それでもずれた場合（在庫の上限で本体の数量だけが減った、包装料の商品ページから直接追加された、など）は、カートを表示するときに Liquid で検出し、JS が自動で直す
 
-We've added Theme Check to Dawn's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Dawn.
+「今すぐ購入」ボタンはカートを通らず包装料を追加できないため、ギフト包装を選んでいる間は隠します。
 
-You can also run it from a terminal with the following Shopify CLI command:
+### オーナーが自分で変えられる設定
+
+- 管理画面のテーマエディタだけで変更でき、プレビューにすぐ反映されます
+- Shopify のフォントライブラリには日本語の書体がないため、見出し用に日本語フォント（明朝体・ゴシック体 5 種）を選べるようにし、**選んだときだけ** Google Fonts を読み込みます
+- 設定の名前と説明はすべて日本語で表示されるよう、`locales/ja.schema.json` に追加しました（英語の管理画面でも表示できるよう `en.default.schema.json` にも追加）
+- 設定ごとの手順を [オーナー向け手順メモ](docs/owner-guide.md) にまとめました
+
+### そのほか
+
+- 送料無料バーは、通貨ごとに基準額を設定できます（米ドルで閲覧しているときは `USD:35` の金額で計算）
+- 言語・通貨の切り替えは、Dawn にもとからある「表示する／しない」の設定はそのまま残し、表示**位置**だけをテーマ設定で選ぶ形にしました
+- 特集ページの FAQ は `<details>` 要素で作り、キーボードでも開閉できます
+
+## 品質チェック
+
+| 項目 | 結果 |
+|---|---|
+| `shopify theme check` | エラー 0 件（警告 9 件はすべて Dawn にもとからあるもの。追加・変更したファイルの警告は 0 件） |
+| 表示幅 375px／768px／1440px（商品ページ、カート、特集ページ） | ※確認後に記入 |
+| ギフトオプションの動作（追加・数量変更・削除で包装料が連動） | ※確認後に記入（確認項目は [実装手順](docs/gift-option-implementation.md#動作確認のチェックリスト)） |
+| テーマエディタの設定がすぐ表示に反映される | ※確認後に記入 |
+
+### Lighthouse（モバイル）
+
+| ページ | Dawn（変更前） | カスタマイズ後 |
+|---|---|---|
+| トップページ | Performance ※ ／ Accessibility ※ ／ Best Practices ※ ／ SEO ※ | ※ |
+| 商品ページ | ※ | ※ |
+| 特集ページ | ― | ※ |
+
+計測方法：開発ストアに素の Dawn とこのテーマを両方追加し、それぞれのプレビュー URL を Chrome のシークレットウィンドウで計測（3 回の中央値）。
+見出しの日本語フォント（Google Fonts）を使うと、文字の表示が少し遅れることがあります。速さを優先する場合は「テーマのフォントを使う」を選べます。
+
+## 制作時間
+
+| 作業 | 時間 |
+|---|---|
+| Dawn の構成の読み込み（カート・商品フォーム・ヘッダー/フッター） | ※ |
+| 1. ギフトオプション | ※ |
+| 2. 見出しの設定 | ※ |
+| 3. 言語・通貨の切り替え位置 | ※ |
+| 4. 特集ページのセクション | ※ |
+| 5. 送料無料バー | ※ |
+| ドキュメント（オーナー向けメモ、調査手順書、実装手順） | ※ |
+| 開発ストアの設定・動作確認・録画 | ※ |
+| **合計** | **※** |
+
+開始と終了の時刻を記録した実測値です。
+
+## 画像の出典
+
+| 使用箇所 | 撮影者 | URL |
+|---|---|---|
+| ※ | ※ | ※ |
+
+## ライセンス
+
+ベースのテーマ [Dawn](https://github.com/Shopify/dawn) は Shopify Inc. の著作物で、[LICENSE.md](LICENSE.md) の条件（Shopify と連携するテーマの開発に限り、改変・配布を許可）で公開されています。このリポジトリはその条件に従い、Shopify 用テーマとして公開しています。
+追加・変更したファイルには、コメントで `[カスタマイズ]` と書いています。Dawn からの変更点は、最初のコミット（Dawn 16.0.0 そのまま）との差分で確認できます。
 
 ```bash
-shopify theme check
+git diff <最初のコミット> -- . ':!docs' ':!store-setup' ':!README.md'
 ```
-
-### Continuous Integration
-
-Dawn uses [GitHub Actions](https://github.com/features/actions) to maintain the quality of the theme. [This is a starting point](https://github.com/Shopify/dawn/blob/main/.github/workflows/ci.yml) and what we suggest to use in order to ensure you're building better themes. Feel free to build off of it!
-
-#### Shopify/lighthouse-ci-action
-
-We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](https://github.com/Shopify/lighthouse-ci-action). This runs a series of [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) audits for the home, product and collections pages on a store to ensure code that gets added doesn't degrade storefront performance over time.
-
-#### Shopify/theme-check-action
-
-Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
-
-## Contributing
-
-Want to make commerce better for everyone by contributing to Dawn? We'd love your help! Please read our [contributing guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build for Dawn.
-
-## Code of conduct
-
-All developers who wish to contribute through code or issues, please first read our [Code of Conduct](https://github.com/Shopify/dawn/blob/main/.github/CODE_OF_CONDUCT.md).
-
-## Theme Store submission
-
-The [Shopify Theme Store](https://themes.shopify.com/) is the place where Shopify merchants find the themes that they'll use to showcase and support their business. As a theme partner, you can create themes for the Shopify Theme Store and reach an international audience of an ever-growing number of entrepreneurs.
-
-Ensure that you follow the list of [theme store requirements](https://shopify.dev/themes/store/requirements) if you're interested in becoming a [Shopify Theme Partner](https://themes.shopify.com/services/themes/guidelines) and building themes for the Shopify platform.
-
-## License
-
-Copyright (c) 2021-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.

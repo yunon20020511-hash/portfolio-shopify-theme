@@ -1,0 +1,203 @@
+/* [カスタマイズ] 特集ページ（LP）用セクション */
+
+.gift-feature__block {
+  margin-top: 5.6rem;
+}
+
+.gift-feature__block:first-child {
+  margin-top: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .gift-feature__block {
+    margin-top: 8rem;
+  }
+}
+
+.gift-feature__heading {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.gift-feature__heading > * {
+  margin: 0;
+}
+
+.gift-feature__subheading,
+.gift-feature__eyebrow {
+  margin: 0 0 0.8rem;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* メインビジュアル */
+.gift-feature__hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: var(--hero-min-height, 60vh);
+  overflow: hidden;
+}
+
+.gift-feature__hero + .gift-feature__block {
+  margin-top: 5.6rem;
+}
+
+.gift-feature__hero:not(.gift-feature__hero--full) {
+  margin-top: 2rem;
+}
+
+.gift-feature__hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.gift-feature__hero:not(.gift-feature__hero--full) .gift-feature__hero-media {
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
+.gift-feature__hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: var(--hero-overlay, 0.35);
+}
+
+.gift-feature__hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gift-feature__hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 72rem;
+  padding: 4rem 2rem;
+  color: #fff;
+}
+
+.gift-feature__hero-content .gift-feature__eyebrow,
+.gift-feature__hero-content .gift-feature__hero-heading {
+  color: #fff;
+}
+
+.gift-feature__hero-heading {
+  margin: 0 0 1.6rem;
+}
+
+.gift-feature__hero-text {
+  margin-bottom: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+.gift-feature__hero--center {
+  justify-content: center;
+  text-align: center;
+}
+
+.gift-feature__hero--center .gift-feature__hero-content {
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 750px) {
+  .gift-feature__hero-content {
+    padding: 6rem 5rem;
+  }
+
+  .gift-feature__hero:not(.gift-feature__hero--full) .gift-feature__hero-media {
+    left: 5rem;
+    right: 5rem;
+  }
+
+  .gift-feature__hero:not(.gift-feature__hero--full) .gift-feature__hero-content {
+    padding-left: 9rem;
+    padding-right: 9rem;
+  }
+}
+
+/* FAQ（アコーディオン） */
+.gift-feature__faq-list {
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.15);
+}
+
+.gift-feature__faq-item {
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.15);
+}
+
+.gift-feature__faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 2rem 0.4rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  list-style: none;
+}
+
+.gift-feature__faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.gift-feature__faq-question::before {
+  content: 'Q';
+  flex-shrink: 0;
+  font-family: var(--font-heading-family);
+  font-size: 1.8rem;
+  color: rgb(var(--color-button));
+}
+
+.gift-feature__faq-question span {
+  flex-grow: 1;
+}
+
+.gift-feature__faq-question .icon-caret {
+  flex-shrink: 0;
+  width: 1.2rem;
+  transition: transform var(--duration-default) ease;
+}
+
+.gift-feature__faq-item[open] .icon-caret {
+  transform: rotate(180deg);
+}
+
+.gift-feature__faq-answer {
+  padding: 0 0.4rem 2rem 3rem;
+  line-height: 1.8;
+}
+
+.gift-feature__faq-answer > :first-child {
+  margin-top: 0;
+}
+
+/* CTA */
+.gift-feature__cta {
+  padding: 4.8rem 2rem;
+  text-align: center;
+}
+
+.gift-feature__cta .gift-feature__heading {
+  margin-bottom: 1.6rem;
+}
+
+.gift-feature__cta-text {
+  max-width: 56rem;
+  margin: 0 auto 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .gift-feature__cta {
+    padding: 6.4rem 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-feature__faq-question .icon-caret {
+    transition: none;
+  }
+}

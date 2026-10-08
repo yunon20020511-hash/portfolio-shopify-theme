@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Dawn",
+    "theme_name": "Yuiha-do (Dawn custom)",
     "theme_version": "16.0.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
@@ -143,6 +143,99 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.custom_headings.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.custom_headings.settings.paragraph.content"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_jp",
+        "label": "t:settings_schema.custom_headings.settings.heading_font_jp.label",
+        "info": "t:settings_schema.custom_headings.settings.heading_font_jp.info",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.custom_headings.settings.heading_font_jp.options__none.label"
+          },
+          {
+            "value": "noto_serif_jp",
+            "label": "Noto Serif JP"
+          },
+          {
+            "value": "shippori_mincho",
+            "label": "Shippori Mincho"
+          },
+          {
+            "value": "zen_old_mincho",
+            "label": "Zen Old Mincho"
+          },
+          {
+            "value": "noto_sans_jp",
+            "label": "Noto Sans JP"
+          },
+          {
+            "value": "zen_maru_gothic",
+            "label": "Zen Maru Gothic"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "heading_weight",
+        "label": "t:settings_schema.custom_headings.settings.heading_weight.label",
+        "default": "theme",
+        "options": [
+          {
+            "value": "theme",
+            "label": "t:settings_schema.custom_headings.settings.heading_weight.options__theme.label"
+          },
+          {
+            "value": "400",
+            "label": "t:settings_schema.custom_headings.settings.heading_weight.options__400.label"
+          },
+          {
+            "value": "500",
+            "label": "t:settings_schema.custom_headings.settings.heading_weight.options__500.label"
+          },
+          {
+            "value": "700",
+            "label": "t:settings_schema.custom_headings.settings.heading_weight.options__700.label"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "heading_scale_mobile",
+        "min": 70,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.custom_headings.settings.heading_scale_mobile.label",
+        "info": "t:settings_schema.custom_headings.settings.heading_scale_mobile.info",
+        "default": 85
+      },
+      {
+        "type": "range",
+        "id": "heading_letter_spacing",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "label": "t:settings_schema.custom_headings.settings.heading_letter_spacing.label",
+        "info": "t:settings_schema.custom_headings.settings.heading_letter_spacing.info",
+        "default": 6
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "t:settings_schema.custom_headings.settings.heading_color.label",
+        "info": "t:settings_schema.custom_headings.settings.heading_color.info"
       }
     ]
   },
@@ -1449,6 +1542,72 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.gift_wrap.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.gift_wrap.settings.paragraph.content"
+      },
+      {
+        "type": "product",
+        "id": "gift_wrap_product",
+        "label": "t:settings_schema.gift_wrap.settings.gift_wrap_product.label",
+        "info": "t:settings_schema.gift_wrap.settings.gift_wrap_product.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.free_shipping.name",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "free_shipping_enable",
+        "label": "t:settings_schema.free_shipping.settings.free_shipping_enable.label",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "t:settings_schema.free_shipping.settings.free_shipping_threshold.label",
+        "info": "t:settings_schema.free_shipping.settings.free_shipping_threshold.info",
+        "default": 5000
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_thresholds_other",
+        "label": "t:settings_schema.free_shipping.settings.free_shipping_thresholds_other.label",
+        "info": "t:settings_schema.free_shipping.settings.free_shipping_thresholds_other.info",
+        "default": "USD:35"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.localization_position.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "localization_position",
+        "label": "t:settings_schema.localization_position.settings.localization_position.label",
+        "info": "t:settings_schema.localization_position.settings.localization_position.info",
+        "default": "header",
+        "options": [
+          {
+            "value": "header",
+            "label": "t:settings_schema.localization_position.settings.localization_position.options__header.label"
+          },
+          {
+            "value": "footer",
+            "label": "t:settings_schema.localization_position.settings.localization_position.options__footer.label"
+          },
+          {
+            "value": "both",
+            "label": "t:settings_schema.localization_position.settings.localization_position.options__both.label"
+          }
+        ]
       }
     ]
   },

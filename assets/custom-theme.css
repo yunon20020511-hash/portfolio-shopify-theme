@@ -1,0 +1,68 @@
+/* [カスタマイズ] テーマ全体で読み込む追加スタイル（送料無料バー、ギフト包装料の行、サンプル表記） */
+
+.free-shipping-bar {
+  margin: 0 0 2rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: var(--inputs-radius);
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.drawer .free-shipping-bar {
+  margin-bottom: 1.2rem;
+}
+
+.free-shipping-bar__message {
+  margin: 0 0 0.8rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.free-shipping-bar__message strong {
+  font-size: 1.6rem;
+}
+
+.free-shipping-bar__track {
+  position: relative;
+  height: 0.8rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  background: rgba(var(--color-foreground), 0.12);
+}
+
+.free-shipping-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: rgb(var(--color-button));
+  transition: width var(--duration-default) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .free-shipping-bar__fill {
+    transition: none;
+  }
+}
+
+/* 包装料の行：数量は本体と連動するため、入力欄と削除ボタンを出さない */
+.cart-item--gift-wrap quantity-input,
+.cart-item--gift-wrap cart-remove-button {
+  display: none;
+}
+
+.cart-item__gift-note {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.cart-item--gift-wrap .cart-item__image-container {
+  max-width: 6rem;
+}
+
+/* フッターの「自主制作サンプル」表記 */
+.footer__sample-notice {
+  display: block;
+  width: 100%;
+  margin: 1.2rem 0 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.04rem;
+}

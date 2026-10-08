@@ -1,0 +1,147 @@
+{% comment %}
+  [カスタマイズ] 商品ページのギフトオプション（ギフト包装・のし・メッセージカード）
+
+  - 入力欄は form 属性で商品フォームに紐づけ、line item properties としてカートに送る
+  - 包装料はテーマ設定「ギフト包装」で選んだ商品（例：ギフト包装料 330円）を、本体と同時にカートへ追加する
+    （追加処理は assets/gift-options.js、カートでの連動は snippets/gift-wrap-sync.liquid）
+
+  Accepts:
+  - block: {Object} gift_options ブロック
+  - product: {Object} 表示中の商品
+  - product_form_id: {String} 商品フォームの id
+
+  Usage:
+  {% render 'gift-options', block: block, product: product, product_form_id: product_form_id %}
+{% endcomment %}
+{%- liquid
+  assign wrap_product = settings.gift_wrap_product
+  assign wrap_variant = wrap_product.selected_or_first_available_variant
+  assign noshi_options = block.settings.noshi_options | newline_to_br | strip_newlines | split: '<br />'
+  assign card_options = block.settings.card_options | newline_to_br | strip_newlines | split: '<br />'
+  assign wrap_price = wrap_variant.price | money
+-%}
+
+{%- liquid
+  # 包装料の商品が未設定のときは、テーマエディタでだけ案内を出し、お客様には何も表示しない
+  assign show_gift_options = true
+  if product == blank or product.id == wrap_product.id
+    assign show_gift_options = false
+  elsif wrap_variant == blank and request.design_mode == false
+    assign show_gift_options = false
+  endif
+-%}
+
+{%- if show_gift_options -%}
+  {{ 'component-gift-options.css' | asset_url | stylesheet_tag }}
+
+  <gift-options
+    class="gift-options"
+    data-form-id="{{ product_form_id }}"
+    data-wrap-variant-id="{{ wrap_variant.id }}"
+    data-target-label="{{ 'gift_options.target_product' | t | escape }}"
+    data-product-title="{{ product.title | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    <fieldset class="gift-options__fieldset">
+      <legend class="gift-options__legend form__label">{{ block.settings.heading | escape }}</legend>
+
+      {%- if wrap_variant == blank or wrap_variant.available == false -%}
+        <p class="gift-options__unavailable caption">
+          {%- if request.design_mode -%}
+            {{ 'gift_options.editor_no_wrap_product' | t }}
+          {%- else -%}
+            {{ 'gift_options.unavailable' | t }}
+          {%- endif -%}
+        </p>
+      {%- else -%}
+        <label class="gift-options__toggle" for="GiftWrap-{{ block.id }}">
+          <input
+            type="checkbox"
+            id="GiftWrap-{{ block.id }}"
+            class="gift-options__checkbox"
+            name="properties[{{ 'gift_options.property_wrap' | t }}]"
+            value="{{ 'gift_options.property_wrap_value' | t }}"
+            form="{{ product_form_id }}"
+          >
+          <span>
+            {{- 'gift_options.wrap_label' | t: price: wrap_price -}}
+          </span>
+        </label>
+
+        <div class="gift-options__details" id="GiftOptionsDetails-{{ block.id }}" hidden>
+          {%- if block.settings.show_noshi and noshi_options.size > 0 -%}
+            <div class="gift-options__field">
+              <label class="gift-options__label" for="GiftNoshi-{{ block.id }}">
+                {{- 'gift_options.noshi_label' | t -}}
+              </label>
+              <div class="select">
+                <select
+                  id="GiftNoshi-{{ block.id }}"
+                  class="select__select"
+                  name="properties[{{ 'gift_options.noshi_label' | t }}]"
+                  form="{{ product_form_id }}"
+                  disabled
+                >
+                  {%- for option in noshi_options -%}
+                    {%- assign option_value = option | strip -%}
+                    {%- if option_value != blank -%}
+                      <option value="{{ option_value | escape }}">{{ option_value | escape }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.show_card and card_options.size > 0 -%}
+            <div class="gift-options__field">
+              <label class="gift-options__label" for="GiftCard-{{ block.id }}">
+                {{- 'gift_options.card_label' | t -}}
+              </label>
+              <div class="select">
+                <select
+                  id="GiftCard-{{ block.id }}"
+                  class="select__select"
+                  name="properties[{{ 'gift_options.card_label' | t }}]"
+                  form="{{ product_form_id }}"
+                  disabled
+                >
+                  {%- for option in card_options -%}
+                    {%- assign option_value = option | strip -%}
+                    {%- if option_value != blank -%}
+                      <option value="{{ option_value | escape }}">{{ option_value | escape }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </div>
+            </div>
+
+            {%- if block.settings.show_message -%}
+              <div class="gift-options__field">
+                <label class="gift-options__label" for="GiftMessage-{{ block.id }}">
+                  {{- 'gift_options.message_label' | t -}}
+                  <span class="caption">{{ 'gift_options.message_limit' | t: count: 100 }}</span>
+                </label>
+                <textarea
+                  id="GiftMessage-{{ block.id }}"
+                  class="gift-options__message field__input"
+                  name="properties[{{ 'gift_options.message_label' | t }}]"
+                  form="{{ product_form_id }}"
+                  rows="3"
+                  maxlength="100"
+                  disabled
+                ></textarea>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if block.settings.note != blank -%}
+            <p class="gift-options__note caption">{{ block.settings.note | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </fieldset>
+  </gift-options>
+{%- endif -%}

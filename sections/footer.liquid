@@ -256,9 +256,22 @@
       data-cascade
     {% endif %}
   >
+    {%- liquid
+      # [カスタマイズ] 言語・通貨の切り替えをフッターに出すかは、テーマ設定「言語・通貨の切り替え」の表示位置で決める
+      assign footer_country_selector = false
+      assign footer_language_selector = false
+      if settings.localization_position != 'header'
+        if section.settings.enable_country_selector and localization.available_countries.size > 1
+          assign footer_country_selector = true
+        endif
+        if section.settings.enable_language_selector and localization.available_languages.size > 1
+          assign footer_language_selector = true
+        endif
+      endif
+    -%}
     <div class="footer__content-bottom-wrapper page-width">
       <div class="footer__column footer__localization isolate">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+        {%- if footer_country_selector -%}
           <localization-form>
             {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
               <div>
@@ -269,7 +282,7 @@
           </localization-form>
         {%- endif -%}
 
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        {%- if footer_language_selector -%}
           <localization-form>
             {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
               <div>
@@ -297,7 +310,7 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+    <div class="footer__content-bottom-wrapper page-width{% if footer_country_selector == false and footer_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
@@ -315,6 +328,9 @@
               {%- endif -%}
             {%- endfor -%}
           </ul>
+        {%- endif -%}
+        {%- if section.settings.sample_notice != blank -%}
+          <p class="footer__sample-notice copyright__content">{{ section.settings.sample_notice | escape }}</p>
         {%- endif -%}
       </div>
     </div>
@@ -484,6 +500,12 @@
       "id": "payment_enable",
       "default": true,
       "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "text",
+      "id": "sample_notice",
+      "label": "t:sections.footer.settings.sample_notice.label",
+      "info": "t:sections.footer.settings.sample_notice.info"
     },
     {
       "type": "checkbox",

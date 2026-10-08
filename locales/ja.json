@@ -1,4 +1,22 @@
 {
+  "gift_options": {
+    "wrap_label": "ギフト包装する（+{{ price }}）",
+    "property_wrap": "ギフト包装",
+    "property_wrap_value": "あり",
+    "noshi_label": "のし",
+    "card_label": "メッセージカード",
+    "message_label": "カードに書くメッセージ",
+    "message_limit": "{{ count }}文字まで",
+    "target_product": "対象商品",
+    "cart_linked_quantity": "数量は対象商品と連動します（{{ quantity }}点）",
+    "unavailable": "ただいまギフト包装を承っておりません。",
+    "editor_no_wrap_product": "テーマ設定の「ギフト包装」で包装料の商品を選ぶと、ここにギフトオプションが表示されます。"
+  },
+  "free_shipping": {
+    "remaining_html": "あと<strong>{{ amount }}</strong>で送料無料",
+    "achieved": "送料無料でお届けします",
+    "progress_label": "送料無料までの進み具合"
+  },
   "general": {
     "password_page": {
       "login_form_heading": "パスワードを入力してストアにアクセスする。",

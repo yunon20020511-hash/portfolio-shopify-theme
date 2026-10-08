@@ -1,0 +1,53 @@
+{% comment %}
+  [カスタマイズ] 送料無料までの残り金額バー（カートページとカートドロワー）
+
+  基準額はテーマ設定「送料無料バー」で変更できる。
+  - ストアの通貨（円）：free_shipping_threshold
+  - ほかの通貨：free_shipping_thresholds_other に「USD:35」のように通貨コードと金額を書く（複数はカンマ区切り）
+    書かれていない通貨で閲覧しているときは、バーを表示しない
+
+  Usage:
+  {% render 'free-shipping-bar' %}
+{% endcomment %}
+{%- liquid
+  assign threshold = 0
+  if cart.currency.iso_code == shop.currency
+    assign threshold = settings.free_shipping_threshold | times: 100
+  else
+    assign currency_pairs = settings.free_shipping_thresholds_other | split: ','
+    for pair in currency_pairs
+      assign pair_parts = pair | split: ':'
+      assign pair_code = pair_parts[0] | strip | upcase
+      if pair_code == cart.currency.iso_code and pair_parts[1] != blank
+        assign threshold = pair_parts[1] | strip | times: 100 | round
+      endif
+    endfor
+  endif
+-%}
+
+{%- if settings.free_shipping_enable and threshold > 0 and cart.item_count > 0 -%}
+  {%- liquid
+    assign remaining = threshold | minus: cart.total_price
+    assign progress = cart.total_price | times: 100 | divided_by: threshold | at_most: 100
+    assign remaining_money = remaining | money
+  -%}
+  <div class="free-shipping-bar{% if remaining <= 0 %} free-shipping-bar--achieved{% endif %}">
+    <p class="free-shipping-bar__message">
+      {%- if remaining > 0 -%}
+        {{ 'free_shipping.remaining_html' | t: amount: remaining_money }}
+      {%- else -%}
+        {{ 'free_shipping.achieved' | t }}
+      {%- endif -%}
+    </p>
+    <div
+      class="free-shipping-bar__track"
+      role="progressbar"
+      aria-label="{{ 'free_shipping.progress_label' | t }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="{{ progress }}"
+    >
+      <span class="free-shipping-bar__fill" style="width: {{ progress }}%;"></span>
+    </div>
+  </div>
+{%- endif -%}
