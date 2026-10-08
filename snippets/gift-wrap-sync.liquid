@@ -41,7 +41,12 @@
   endfor
 -%}
 {%- if sync_entries != '' -%}
+  {%- liquid
+    # {{ }} の中に '}' の文字列を書くと Shopify の構文エラーになるため、ここで組み立てる
+    assign sync_json = sync_entries | remove_first: ','
+    assign sync_json = '{' | append: sync_json | append: '}'
+  -%}
   <script type="application/json" data-gift-wrap-sync>
-    {{- '{' | append: sync_entries | remove_first: ',' | append: '}' -}}
+    {{- sync_json -}}
   </script>
 {%- endif -%}
