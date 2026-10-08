@@ -14,20 +14,29 @@
   case settings.heading_font_jp
     when 'noto_serif_jp'
       assign jp_font_family = "'Noto Serif JP', serif"
-      assign jp_font_query = 'Noto+Serif+JP:wght@400;500;700'
+      assign jp_font_query = 'Noto+Serif+JP'
     when 'shippori_mincho'
       assign jp_font_family = "'Shippori Mincho', serif"
-      assign jp_font_query = 'Shippori+Mincho:wght@400;500;700'
+      assign jp_font_query = 'Shippori+Mincho'
     when 'zen_old_mincho'
       assign jp_font_family = "'Zen Old Mincho', serif"
-      assign jp_font_query = 'Zen+Old+Mincho:wght@400;500;700'
+      assign jp_font_query = 'Zen+Old+Mincho'
     when 'noto_sans_jp'
       assign jp_font_family = "'Noto Sans JP', sans-serif"
-      assign jp_font_query = 'Noto+Sans+JP:wght@400;500;700'
+      assign jp_font_query = 'Noto+Sans+JP'
     when 'zen_maru_gothic'
       assign jp_font_family = "'Zen Maru Gothic', sans-serif"
-      assign jp_font_query = 'Zen+Maru+Gothic:wght@400;500;700'
+      assign jp_font_query = 'Zen+Maru+Gothic'
   endcase
+
+  # 読み込む太さは、設定で選んだ 1 種類だけにする（日本語フォントは太さごとに数百 KB になるため）
+  if jp_font_query != blank
+    assign jp_font_weight = settings.heading_weight
+    if jp_font_weight == 'theme'
+      assign jp_font_weight = '400'
+    endif
+    assign jp_font_query = jp_font_query | append: ':wght@' | append: jp_font_weight
+  endif
 -%}
 
 {%- if jp_font_query != blank -%}
@@ -56,7 +65,9 @@
       --font-heading-family: {{ jp_font_family }};
       --font-heading-style: normal;
     {%- endif %}
-    {%- if settings.heading_weight != 'theme' %}
+    {%- if jp_font_family != blank %}
+      --font-heading-weight: {{ jp_font_weight }};
+    {%- elsif settings.heading_weight != 'theme' %}
       --font-heading-weight: {{ settings.heading_weight }};
     {%- endif %}
   }
