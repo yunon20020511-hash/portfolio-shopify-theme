@@ -35,7 +35,7 @@
         "button"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
+        "image_overlay_opacity": 55,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
