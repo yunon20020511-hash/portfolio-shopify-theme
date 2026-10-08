@@ -1,6 +1,10 @@
 # push のたびに Shopify Theme Check を実行し、Liquid やテーマの構成に問題がないか確認する
 name: Theme Check
 on: [push, pull_request]
+# 結果を GitHub の「Checks」に書き込むための権限
+permissions:
+  contents: read
+  checks: write
 jobs:
   theme-check:
     runs-on: ubuntu-latest
