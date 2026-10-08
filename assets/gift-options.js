@@ -13,7 +13,8 @@
 window.GiftWrap = {
   // 商品フォームに対応する <gift-options> を返す
   findOptions(form) {
-    return document.querySelector(`gift-options[data-form-id="${form.id}"]`);
+    // 商品フォームには name="id" の入力欄があり form.id はその要素を指すため、属性から取る
+    return document.querySelector(`gift-options[data-form-id="${form.getAttribute('id')}"]`);
   },
 
   // product-form.js から呼ぶ。ギフト包装なしなら null を返し、通常の追加処理に任せる
