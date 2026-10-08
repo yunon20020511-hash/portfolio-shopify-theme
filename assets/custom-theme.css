@@ -43,19 +43,16 @@
   }
 }
 
-/* 包装料の行：数量は本体と連動するため、入力欄と削除ボタンを出さない */
-.cart-item--gift-wrap quantity-input,
-.cart-item--gift-wrap cart-remove-button {
+/* 包装料の行：数量は本体と連動するため、入力欄と削除ボタンを出さない
+   （component-cart-items.css が後から読み込まれても上書きされないよう、詳細度を上げている） */
+.cart-item.cart-item--gift-wrap quantity-input,
+.cart-item.cart-item--gift-wrap cart-remove-button {
   display: none;
 }
 
 .cart-item__gift-note {
   margin: 0;
   color: rgba(var(--color-foreground), 0.75);
-}
-
-.cart-item--gift-wrap .cart-item__image-container {
-  max-width: 6rem;
 }
 
 /* フッターの「自主制作サンプル」表記 */
