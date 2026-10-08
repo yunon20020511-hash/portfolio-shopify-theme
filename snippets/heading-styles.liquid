@@ -34,10 +34,19 @@
   {% # theme-check-disable RemoteAsset %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {%- comment -%}
+    日本語フォントの CSS は大きい（約 55KB）ため、表示を止めないよう後から読み込む。
+    読み込みまでは代わりのフォントで表示し、読み込み後に切り替わる（display=swap）
+  {%- endcomment -%}
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family={{ jp_font_query }}&display=swap"
+    media="print"
+    onload="this.media='all'"
   >
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ jp_font_query }}&display=swap">
+  </noscript>
   {% # theme-check-enable RemoteAsset %}
 {%- endif -%}
 
