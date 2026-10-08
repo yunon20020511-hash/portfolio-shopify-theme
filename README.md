@@ -6,23 +6,23 @@ Shopify の修正・機能追加の案件でよく求められる作業（商品
 > ※架空のショップを題材にした自主制作サンプルです。実在の店舗・商品とは関係ありません。
 > 開発ストアはパスワード付きのため一般公開していません。閲覧をご希望の場合は、応募時にご案内します。
 
-![トップページ（PC・スマートフォン）](docs/images/top.png)
+![トップページ（PC・スマートフォン）](docs/images/top.jpg)
 
 ## カスタマイズの一覧
 
-| # | 内容 | 主なファイル | 画面録画 |
-|---|---|---|---|
-| 1 | **ギフトオプション**：ギフト包装（+330円）・のし・メッセージカード。カートページとカートドロワーに表示し、包装料は本体と数量・削除が連動 | `snippets/gift-options.liquid`、`assets/gift-options.js`、`snippets/gift-wrap-sync.liquid` | [gift-options.mp4](docs/images/gift-options.mp4) |
-| 2 | **オーナーが自分で変えられる見出し設定**：日本語フォント・太さ・スマートフォンでの大きさ・文字間隔・色をテーマエディタで変更 | `config/settings_schema.json`、`snippets/heading-styles.liquid` | [headings.mp4](docs/images/headings.mp4) |
-| 3 | **言語・通貨の切り替えの表示位置**：ヘッダー右上／フッター／両方をテーマエディタで選択 | `sections/header.liquid`、`sections/footer.liquid` | [localization.mp4](docs/images/localization.mp4) |
-| 4 | **特集ページ（LP）用セクション**：メインビジュアル・商品ピックアップ・FAQ（アコーディオン）・CTA・テキストをブロックで自由に並べ替え | `sections/gift-feature.liquid`、`templates/page.gift-feature.json` | [feature-page.mp4](docs/images/feature-page.mp4) |
-| 5 | **送料無料までの残り金額バー**：「あと○円で送料無料」。基準額はテーマエディタで設定（通貨ごとにも設定可） | `snippets/free-shipping-bar.liquid` | [free-shipping.mp4](docs/images/free-shipping.mp4) |
+| # | 内容 | 主なファイル |
+|---|---|---|
+| 1 | **ギフトオプション**：ギフト包装（+330円）・のし・メッセージカード。カートページとカートドロワーに表示し、包装料は本体と数量・削除が連動 | `snippets/gift-options.liquid`、`assets/gift-options.js`、`snippets/gift-wrap-sync.liquid` |
+| 2 | **オーナーが自分で変えられる見出し設定**：日本語フォント・太さ・スマートフォンでの大きさ・文字間隔・色をテーマエディタで変更 | `config/settings_schema.json`、`snippets/heading-styles.liquid` |
+| 3 | **言語・通貨の切り替えの表示位置**：ヘッダー右上／フッター／両方をテーマエディタで選択 | `sections/header.liquid`、`sections/footer.liquid` |
+| 4 | **特集ページ（LP）用セクション**：メインビジュアル・商品ピックアップ・FAQ（アコーディオン）・CTA・テキストをブロックで自由に並べ替え | `sections/gift-feature.liquid`、`templates/page.gift-feature.json` |
+| 5 | **送料無料までの残り金額バー**：「あと○円で送料無料」。基準額はテーマエディタで設定（通貨ごとにも設定可） | `snippets/free-shipping-bar.liquid` |
 
 ### スクリーンショット
 
 | 商品ページ（ギフトオプション） | カートドロワー（包装料の連動・送料無料バー） | 特集ページ |
 |---|---|---|
-| ![商品ページ](docs/images/product.png) | ![カートドロワー](docs/images/cart-drawer.png) | ![特集ページ](docs/images/feature-page.png) |
+| ![商品ページ](docs/images/product.jpg) | ![カートドロワー](docs/images/cart-drawer.jpg) | ![特集ページ](docs/images/feature-page.jpg) |
 
 ## ドキュメント
 
@@ -78,31 +78,34 @@ Shopify の修正・機能追加の案件でよく求められる作業（商品
 
 | 項目 | 結果 |
 |---|---|
-| `shopify theme check` | エラー 0 件（警告 9 件はすべて Dawn にもとからあるもの。追加・変更したファイルの警告は 0 件） |
-| 表示幅 375px／768px／1440px（商品ページ、カート、特集ページ） | ※確認後に記入 |
-| ギフトオプションの動作（追加・数量変更・削除で包装料が連動） | ※確認後に記入（確認項目は [実装手順](docs/gift-option-implementation.md#動作確認のチェックリスト)） |
-| テーマエディタの設定がすぐ表示に反映される | ※確認後に記入 |
+| `shopify theme check` | エラー 0 件（警告 9 件はすべて Dawn にもとからあるもの。追加・変更したファイルの警告は 0 件）。GitHub Actions でも push ごとに実行 |
+| 表示幅 375px／768px／1440px（トップ、商品ページ、カート、特集ページ） | 崩れ・横スクロールなし |
+| ギフトオプションの動作（開発ストアで、ブラウザを自動操作して確認） | 包装なしの追加、包装ありの追加（2 個）、ドロワーの「＋」、カートページでの数量変更・削除、包装料だけが残った場合の自動削除のすべてで、包装料が本体と連動 |
 
-### Lighthouse（モバイル）
+### 確認で見つけて直した不具合
+
+- **包装料がカートに入らない**：Shopify の商品フォームには `name="id"` の入力欄があり、JavaScript の `form.id` がフォームの id ではなくその入力欄を返していた。コードを読むだけの確認では気づけず、実際のブラウザで操作して見つけた
+- **スマートフォンのカートで、包装料の行に削除ボタンが出る**：Dawn のカート用 CSS が後から読み込まれ、非表示の指定を上書きしていた
+- **トップページの表示が遅くなる**：見出し用の日本語フォント（Google Fonts）の CSS が約 55KB あり、読み終わるまで表示が止まっていた。後から読み込む形に変更（下の Lighthouse を参照）
+
+### Lighthouse（モバイル、3 回の中央値）
 
 | ページ | Dawn（変更前） | カスタマイズ後 |
 |---|---|---|
-| トップページ | Performance ※ ／ Accessibility ※ ／ Best Practices ※ ／ SEO ※ | ※ |
-| 商品ページ | ※ | ※ |
-| 特集ページ | ― | ※ |
+| トップページ | 65 ／ 93 ／ 79 ／ 92 | 67 ／ 93 ／ 79 ／ 92 |
+| 商品ページ | 57 ／ 90 ／ 79 ／ 100 | 55 ／ 90 ／ 79 ／ 100（※） |
 
-計測方法：開発ストアに素の Dawn とこのテーマを両方追加し、それぞれのプレビュー URL を Chrome のシークレットウィンドウで計測（3 回の中央値）。
-見出しの日本語フォント（Google Fonts）を使うと、文字の表示が少し遅れることがあります。速さを優先する場合は「テーマのフォントを使う」を選べます。
+数値は Performance ／ Accessibility ／ Best Practices ／ SEO。
+※商品ページのカスタマイズ後の数値は、日本語フォントの読み込みを直す前の計測です。
 
-## 制作時間
+- 計測方法：開発ストアに、素の Dawn 16.0.0 とこのテーマを両方入れ、同じ条件（テーマのプレビュー表示、Chrome のヘッドレスモード）で計測しました
+- プレビュー表示はリダイレクトが入るため、公開中の表示より Performance が低めに出ます。両テーマの比較のための数値です
+- Best Practices の減点は、Shopify が読み込むスクリプトのサードパーティ Cookie によるもので、両テーマ共通です
+- 見出しの日本語フォントを後から読み込むようにする前は、トップページが 72 → 60 に下がっていました。修正後は Dawn と同等です
 
-設計から検証まで 1 日以内で制作しました（Dawn の構成の読み込み、5 つのカスタマイズ、ドキュメント、開発ストアでの動作確認を含む）。
+## 画像
 
-## 画像の出典
-
-| 使用箇所 | 撮影者 | URL |
-|---|---|---|
-| ※ | ※ | ※ |
+写真は [Unsplash](https://unsplash.com/ja) のフリー素材（Unsplash License）を使用しています。
 
 ## ライセンス
 
