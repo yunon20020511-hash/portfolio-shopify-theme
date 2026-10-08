@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,10 +15,11 @@
         "hero": {
           "type": "hero",
           "settings": {
+            "image": "shopify://shop_images/00.jpg",
             "eyebrow": "SEASONAL GIFT 2026 AUTUMN",
             "heading": "季節のギフト特集 ― 秋の贈りもの",
             "heading_size": "h1",
-            "text": "<p>新米の季節に合わせた香ばしいほうじ茶、深煎りのブレンド。<br>大切な方へ、実りの秋を届けるギフトを集めました。</p>",
+            "text": "<p>新米の季節に合わせた香ばしいほうじ茶、深煎りのブレンド。<br/>大切な方へ、実りの秋を届けるギフトを集めました。</p>",
             "button_label": "特集の商品を見る",
             "button_link": "#gift-feature-products",
             "text_alignment": "left",
@@ -22,28 +32,32 @@
         "products": {
           "type": "products",
           "settings": {
-            "subheading": "PICK UP",
             "heading": "スタッフが選んだ秋のギフト",
             "heading_size": "h2",
-            "products": [],
+            "subheading": "PICK UP",
+            "products": [
+              "hojicha-akitomoshi",
+              "ethiopia-yirgacheffe",
+              "tea-coffee-tasting-set"
+            ],
             "columns_desktop": 3
           }
         },
         "message": {
           "type": "text",
           "settings": {
-            "subheading": "GIFT WRAPPING",
             "heading": "包装・のし・メッセージカード",
             "heading_size": "h2",
+            "subheading": "GIFT WRAPPING",
             "text": "<p>商品ページで「ギフト包装する（+330円）」を選ぶと、季節の和紙で一点ずつお包みします。のしの表書きとメッセージカードもお選びいただけます。</p>"
           }
         },
         "faq": {
           "type": "faq",
           "settings": {
-            "subheading": "FAQ",
             "heading": "よくあるご質問",
             "heading_size": "h2",
+            "subheading": "FAQ",
             "open_first": true,
             "question_1": "ギフト包装の料金はいくらですか？",
             "answer_1": "<p>商品1点につき330円（税込）です。数量を2点にすると、包装料も2点分になります。</p>",
@@ -60,9 +74,9 @@
         "cta": {
           "type": "cta",
           "settings": {
-            "subheading": "ALL ITEMS",
             "heading": "贈りたい人を思い浮かべて",
             "heading_size": "h2",
+            "subheading": "ALL ITEMS",
             "text": "<p>日本茶・コーヒー豆・飲み比べセットなど、すべての商品をギフト対応でお届けします。</p>",
             "button_label": "すべての商品を見る",
             "button_link": "shopify://collections/shop",
